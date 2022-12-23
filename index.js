@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const userController = require('./controllers/user')
 const goalController = require('./controllers/goal')
-const trackerController = require('./controllers/tracker')
+const trackerController = require('./controllers/dataTracker')
 // const firebaseAuth = require('./authMiddleware')
 const app = express()
 
