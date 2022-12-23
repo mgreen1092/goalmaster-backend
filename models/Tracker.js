@@ -1,4 +1,4 @@
-const mongoose = require("../db/connection");
+const mongoose = require("../database/connection");
 const Schema = mongoose.Schema;
 
 const trackerSchema = new Schema({

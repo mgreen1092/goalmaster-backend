@@ -1,0 +1,22 @@
+[
+    {
+        "email": "morgan.green0209@gmail.com",
+        "goals": [
+            {
+            "goal": "Read for 30 minutes every night",
+            "description": "read news article or book",
+            "goalvalue": 30,
+            "occurence": "daily",
+            "tracker": [{
+                "value": 60
+            },
+            {
+                "value": 0
+            },
+            {
+                "value": 30
+            }
+        ]
+    }]
+    }
+]
