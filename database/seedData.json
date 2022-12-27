@@ -16,6 +16,21 @@
             {
                 "value": 30
             }]
+        },
+        {
+            "goal": "Workout for 30 minutes ever day",
+            "description": "ghvmh",
+            "goalvalue": 30,
+            "occurence": "daily",
+            "tracker": [{
+                "value": 40
+            },
+            {
+                "value": 30
+            },
+            {
+                "value": 32
+            }]
         }
     ]
     }

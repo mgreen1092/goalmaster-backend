@@ -25,9 +25,12 @@ const goals = []
 data.forEach(user => {
     user.goals.forEach(goal => goals.push(goal))
 })
-const emptyGoals = goals.map(goal => {
+const emptyGoals = goals.map(goalKey => {
     return {
-        name: goal.name,
+        goal: goalKey.goal,
+        description: goalKey.description,
+        goalvalue: goalKey.goalvalue,
+        occurence: goalKey.occurence,
         tracker: []
     }
 })

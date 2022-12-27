@@ -6,23 +6,29 @@ const goalSchema = new Schema({
         type: String,
         required: true
     },
-    description: {
-        type: String,
-        required: false
-    },
+    description: String,
+    // {
+    //     type: String,
+    //     required: true
+    //     // required: false
+    // },
     goalvalue: {
         type: Number,
-        required: true,
+        required: true
     },
     occurence: {
         type: String,
-        required: true,
+        required: true
     },
     tracker: [{
         type: Schema.Types.ObjectId,
-        ref: 'Tracker',
+        ref: 'Tracker'
     }]
 })
+
+// function isMyFieldRequired () {
+//     return typeof this.myField === 'string'? false : true
+// }
 
 const Goal = mongoose.model('Goal', goalSchema)
 module.exports = Goal

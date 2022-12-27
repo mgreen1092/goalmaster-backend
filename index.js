@@ -20,7 +20,7 @@ app.use('/api/users/', userController)
 app.use('/api/goals/', goalController)
 app.use('/api/data', dataController)
 
-app.set('port', process.env.PORT || 8080)
+app.set('port', process.env.PORT || 8000)
 
 app.listen(app.get('port'), () => {
     console.log(`listening on port ${app.get('port')}`);
