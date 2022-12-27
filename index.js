@@ -3,8 +3,9 @@ const cors = require('cors')
 const userController = require('./controllers/user')
 const goalController = require('./controllers/goal')
 const dataController = require('./controllers/dataTracker')
-// const firebaseAuth = require('./authMiddleware')
 const app = express()
+// const firebaseAuth = require('./authMiddleware')
+
 
 app.use(cors())
 app.use(express.json())
@@ -17,7 +18,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/users/', userController)
 app.use('/api/goals/', goalController)
-app.use('/dataController', dataController)
+app.use('/api/data', dataController)
 
 app.set('port', process.env.PORT || 8080)
 
