@@ -57,25 +57,34 @@ const addData = async () => {
     return newData
 }
 
-//Add datapoints to goals
+//Add data points to goals
 
 const dataForGoal = []
 
 data.forEach(user => {
     user.goals.forEach(goal => {
-        goal.tracker.forEach(dataPoint => dataForGoal.push({...dataPoint, goalTitle: goals.goal}))
+        goal.tracker.forEach(dataPoint => dataForGoal.push({...dataPoint, goalTitle: goal.goal}))
     })
 })
-
+console.log('========================== DATA FOR GOAL')
+console.log(dataForGoal)
+console.log('==========================')
+// , goalTitle: goals.goal, goalDescription: goals.description, goalValue: goals.goalvalue, goalOccurence: goals.occurence
 const linkDataToGoals = async () => {
     for (let dataPoint of dataForGoal) {
+        console.log(dataPoint.value, 'data point')
         const found = await DataTracker.findOne({value: dataPoint.value})
+        console.log('==========================')
+        console.log(found, 'found')
+        console.log('==========================')
+        console.log(dataPoint.goalTitle)
+        console.log('==========================')
+        console.log(found._id)
         const updatedGoal = await Goal.findOneAndUpdate(
             { goal: dataPoint.goalTitle },
-            { $push: { tracker: found._id} },
+            { $push: { tracker: found } },
             { new: true }
         )
-        console.log(updatedGoal)
     }
 }
 
