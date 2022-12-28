@@ -28,7 +28,7 @@ router.put('/:email/add', async (req, res, next) => {
         let goalToAdd
         const user = await User.findOne({ email: req.params.email })
         req.body._id
-            ? goalsToAdd = await Goal.findById(req.body._id)
+            ? goalToAdd = await Goal.findById(req.body._id)
             : res.sendStatus(404)
         const newGoals = [...user.goals, goalToAdd]
         const updatedUser = await User.findOneAndUpdate(

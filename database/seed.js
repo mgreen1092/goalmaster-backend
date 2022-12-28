@@ -1,7 +1,7 @@
 const User = require('../models/User')
 const Goal = require('../models/Goal')
 const DataTracker = require('../models/dataTracker')
-const data = require('../seedData.json')
+const data = require('./seedData.json')
 
 //Empty Users
 
@@ -19,7 +19,7 @@ const addUsers = async () => {
     return newUsers
 }
 
-//Empy goals
+//Empty goals
 
 const goals = []
 data.forEach(user => {
@@ -46,7 +46,7 @@ const addGoals = async () => {
 const dataTracker = []
 data.forEach(user => {
     user.goals.forEach(goal => {
-        goal.dataTracker.forEach(dataTrackerPoint => dataTracker.push(dataTrackerPoint))
+        goal.tracker.forEach(dataTrackerPoint => dataTracker.push(dataTrackerPoint))
     })
 })
 
@@ -63,16 +63,16 @@ const dataForGoal = []
 
 data.forEach(user => {
     user.goals.forEach(goal => {
-        goal.dataTracker.forEach(data => dataForGoal.push({...data, goalTitle: goal.goal}))
+        goal.tracker.forEach(dataPoint => dataForGoal.push({...dataPoint, goalTitle: goals.goal}))
     })
 })
 
 const linkDataToGoals = async () => {
-    for (let data of dataForGoal) {
-        const found = await DataTracker.findOne({value: data.value})
+    for (let dataPoint of dataForGoal) {
+        const found = await DataTracker.findOne({value: dataPoint.value})
         const updatedGoal = await Goal.findOneAndUpdate(
-            { goal: data.goalTitle },
-            { $push: { dataTracker: found._id} },
+            { goal: dataPoint.goalTitle },
+            { $push: { tracker: found._id} },
             { new: true }
         )
         console.log(updatedGoal)
@@ -90,10 +90,10 @@ data.forEach(user => {
 })
 
 const linkGoalsToUsers = async () => {
-    for (goal of goalsWithUser) {
-        const found = await Goal.findOne({ goalTitle: goal.goal })
+    for (goalConnect of goalsWithUser) {
+        const found = await Goal.findOne({ goal: goalConnect.goal })
         const updateUser = await User.findOneAndUpdate(
-            { email: goal.user },
+            { email: goalConnect.user },
             { $push: { goals: found._id }},
             { new: true }
         )
