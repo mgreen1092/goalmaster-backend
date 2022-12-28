@@ -5,8 +5,7 @@ const router = express.Router()
 
 router.get('/', async (req, res, next) => {
     try {
-        const goals = await Goal.find({})
-        // .populate('tracker')
+        const goals = await Goal.find({}).populate('tracker')
         res.json(goals)
     } catch (err) {
         next(err)
@@ -15,7 +14,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
     try {
-        const goal = await Goal.findById(req.params.id)
+        const goal = await Goal.findById(req.params.id).populate('tracker')
         goal ? res.json(goal) : res.sendStatus(404)
     } catch (err) {
         next(err)
@@ -60,7 +59,7 @@ router.put('/:id/add', async (req, res, next) => {
         req.body._id
             ? trackerToAdd = await DataPoints.findById(req.body._id)
             : res.sendStatus(500)
-        const newDataPoints = [...playlist.tracker, trackerToAdd]
+        const newDataPoints = [...goal.tracker, trackerToAdd]
         const updatedGoal = await Goal.findByIdAndUpdate(
             req.params.id,
             { tracker: newDataPoints },
