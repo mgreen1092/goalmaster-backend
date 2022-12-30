@@ -3,7 +3,13 @@ require('dotenv').config()
 
 mongoose.Promise = Promise
 
-const mongoURI = process.env.DATABASE_URL
+let mongoURI = process.env.DATABASE_URL
+
+if (process.env.NODE_ENV === "production") {
+  mongoURI = process.env.DATABASE_URL;
+} else {
+  mongoURI = "mongodb://localhost/goalmaster";
+}
 
 mongoose
   .connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
