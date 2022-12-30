@@ -25,6 +25,7 @@ router.get('/:email', async (req, res, next) => {
 
 router.put('/:email/add', async (req, res, next) => {
     try {
+        console.log
         let goalToAdd
         const user = await User.findOne({ email: req.params.email })
         req.body._id
