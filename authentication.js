@@ -1,6 +1,6 @@
 const admin = require('./database/firebaseConfig')
 
-class FirebaseAuth {
+class Middleware {
     async authenticate(req, res, next) {
         let token
         if (req.headers.authorization) {
@@ -23,4 +23,4 @@ class FirebaseAuth {
     }
 }
 
-module.exports = new FirebaseAuth()
+module.exports = new Middleware()
