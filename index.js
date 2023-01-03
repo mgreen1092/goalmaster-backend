@@ -4,13 +4,13 @@ const userController = require('./controllers/user')
 const goalController = require('./controllers/goal')
 const dataController = require('./controllers/dataTracker')
 const app = express()
-// const firebaseAuth = require('./authMiddleware')
+const Middleware = require('./authentication')
 
 
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-// app.use(firebaseAuth.authenticate)
+app.use(Middleware.authenticate)
 
 app.get('/', (req, res) => {
     res.redirect('/api/users')
