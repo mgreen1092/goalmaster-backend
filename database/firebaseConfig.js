@@ -3,7 +3,7 @@ const admin = require("firebase-admin");
 const serviceAccount= {
     type: "service_account",
     project_id: "goalmaster-79ec8",
-    private_key_id: "de87a7c7cd327dc1fa382b2a447f8a80bbc27b2a",
+    private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
     private_key: JSON.parse(process.env.FIREBASE_PRIVATE_KEY).privateKey,
     client_email: "firebase-adminsdk-j0p3o@goalmaster-79ec8.iam.gserviceaccount.com",
     client_id: process.env.FIREBASE_CLIENT_ID,
