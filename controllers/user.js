@@ -4,8 +4,10 @@ const Goal = require('../models/Goal')
 const router = express.Router()
 
 router.get('/', async (req, res, next) => {
+    console.log('USER CONTROLLER')
     try {
         const users = await User.find({}).populate('goals')
+        console.log(users)
         res.json(users)
     }
     catch (err) {
