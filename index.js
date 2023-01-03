@@ -4,7 +4,7 @@ const userController = require('./controllers/user')
 const goalController = require('./controllers/goal')
 const dataController = require('./controllers/dataTracker')
 const app = express()
-const Middleware = require('./authentication')
+const Middleware = require('./authentication.js')
 
 
 app.use(cors())
