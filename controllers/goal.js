@@ -6,9 +6,10 @@ const User = require('../models/User')
 
 router.get('/', async (req, res, next) => {
     try {
-        User.findOne({email: req.user.email}).populate('goals')
+        User.findOne({email: req.user.email}).populate('goals').exec( async (error, user) => {
+            res.json(user)
+        })
         // const goals = await Goal.find({})
-        res.json(goals)
     } catch (err) {
         next(err)
     }
