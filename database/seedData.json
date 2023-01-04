@@ -6,6 +6,7 @@
             "goal": "Read for 30 minutes every night",
             "description": "read news article or book",
             "goalvalue": 30,
+            "time": "minutes",
             "occurence": "daily",
             "tracker": [
                 {
@@ -22,6 +23,7 @@
             "goal": "Workout for 30 minutes ever day",
             "description": "ghvmh",
             "goalvalue": 30,
+            "time": "minutes",
             "occurence": "daily",
             "tracker": [{
                 "value": 40

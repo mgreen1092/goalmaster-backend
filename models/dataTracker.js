@@ -5,7 +5,7 @@ const dataTrackerSchema = new Schema({
     value: {
         type: Number,
         required: true,
-    }
+    },
 }, { timestamps: true })
 
 const DataTracker = mongoose.model('Tracker', dataTrackerSchema)
