@@ -2,16 +2,18 @@ const express = require('express')
 const Goal = require('../models/Goal')
 const DataPoints = require('../models/dataTracker')
 const router = express.Router()
+const User = require('../models/User')
 
 router.get('/', async (req, res, next) => {
     try {
+        const user = await User.findOne({email: user.email}).populate('Goals')
+        console.log(user)
         const goals = await Goal.find({}).populate('tracker')
         res.json(goals)
     } catch (err) {
         next(err)
     }
 })
-
 router.get('/:id', async (req, res, next) => {
     try {
         const goal = await Goal.findById(req.params.id).populate('tracker')
