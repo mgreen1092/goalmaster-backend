@@ -6,9 +6,8 @@ const User = require('../models/User')
 
 router.get('/', async (req, res, next) => {
     try {
-        // const user = await User.findOne({email: user.email}).populate('Goals')
-        // console.log(user)
-        const goals = await Goal.find({}).populate('tracker')
+        User.findOne({email: req.user.email}).populate('goals')
+        // const goals = await Goal.find({})
         res.json(goals)
     } catch (err) {
         next(err)
@@ -25,10 +24,11 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     // console.log(req.user.email, 'REQ USER')
+    console.log(req.body, 'REQ BODY')
     try {
         console.log(req.user, 'REQ USER')
         User.findOne({email: req.user.email}).populate('goals').exec( async (error, user) => {
-            const newGoal = await Goal.create(req.body)
+            const newGoal = await Goal.create(req.body.addGoal)
             user.goals.push(newGoal)
             await user.save()
             console.log(user, '======================')
