@@ -2,6 +2,7 @@ const mongoose = require("../database/connection");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
+    uid: String,
     email: {
         type: String,
         required: true

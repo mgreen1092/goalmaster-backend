@@ -7,6 +7,7 @@ const data = require('./seedData.json')
 
 const users = data.map(user => {
     return {
+        uid: user.uid,
         email: user.email,
         goals: []
     }

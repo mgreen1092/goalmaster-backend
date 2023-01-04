@@ -11,10 +11,7 @@ const goalSchema = new Schema({
         type: Number,
         required: true
     },
-    time: {
-        type: String,
-        required: true,
-    },
+    time: String,
     occurence: {
         type: String,
         required: true
