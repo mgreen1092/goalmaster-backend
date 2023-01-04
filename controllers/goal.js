@@ -2,7 +2,7 @@ const express = require('express')
 const Goal = require('../models/Goal')
 const DataPoints = require('../models/dataTracker')
 const router = express.Router()
-// const User = require('../models/User')
+const User = require('../models/User')
 
 router.get('/', async (req, res, next) => {
     try {
@@ -24,11 +24,24 @@ router.get('/:id', async (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
+    // console.log(req.user.email, 'REQ USER')
     try {
-        const user = await User.findOne({email: req.user.email}).populate('Goals')
-        console.log(user)
-        const newGoal = await Goal.create(req.body)
-        res.status(201).json(newGoal) // add something here to catch missing name field otherwise 500 error
+        console.log(req.user, 'REQ USER')
+        User.findOne({email: req.user.email}).populate('goals').exec( async (error, user) => {
+            const newGoal = await Goal.create(req.body)
+            user.goals.push(newGoal)
+            await user.save()
+            console.log(user, '======================')
+            res.status(201).json(user)
+        })
+        
+        // User.findOne({email: req.user.email}, (err, user) => {
+        //     console.log(user, '======================')
+        //     res.status(201).json(user)
+        // })
+        // console.log(user)
+        // const newGoal = await Goal.create(req.body)
+        // res.status(201).json(newGoal) // add something here to catch missing name field otherwise 500 error
     } catch (err) {
         next(err)
     }
