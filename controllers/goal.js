@@ -35,14 +35,6 @@ router.post('/', async (req, res, next) => {
             console.log(user, '======================')
             res.status(201).json(user)
         })
-        
-        // User.findOne({email: req.user.email}, (err, user) => {
-        //     console.log(user, '======================')
-        //     res.status(201).json(user)
-        // })
-        // console.log(user)
-        // const newGoal = await Goal.create(req.body)
-        // res.status(201).json(newGoal) // add something here to catch missing name field otherwise 500 error
     } catch (err) {
         next(err)
     }
